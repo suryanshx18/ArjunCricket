@@ -3,196 +3,200 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Arjun Cricket</title>
+<title>Arjun Cricket Live</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
 
 <style>
 body{
   margin:0;
-  font-family:Arial;
-  background:#0b0f0c;
+  font-family:Montserrat;
+  background:#0a0a0a;
   color:white;
 }
 
 /* HEADER */
 .header{
-  background:#00c853;
+  font-family:"Bebas Neue";
+  font-size:40px;
+  text-align:center;
+  padding:15px;
+  color:#ff1e1e;
+  letter-spacing:3px;
+}
+
+/* SUB TEXT */
+.sub{
+  text-align:center;
+  color:#aaa;
+  margin-top:-10px;
+  font-size:13px;
+}
+
+/* HOME GRID */
+.container{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:12px;
+  padding:20px;
+  max-width:500px;
+  margin:auto;
+}
+
+/* BUTTONS */
+.btn{
+  display:block;
   padding:14px;
   text-align:center;
-  font-weight:bold;
-}
-
-/* HOME */
-#home{
-  padding:15px;
-}
-
-.card{
-  background:#121a14;
-  padding:15px;
-  margin:10px 0;
-  border-radius:10px;
-  border:1px solid #1f2a22;
-}
-
-.card a{
-  color:#00e676;
+  background:linear-gradient(135deg,#ff1e1e,#b30000);
+  color:white;
+  font-weight:600;
+  border-radius:12px;
   text-decoration:none;
-  font-weight:bold;
+  box-shadow:0 0 12px rgba(255,0,0,0.3);
+  transition:0.2s;
+}
+
+.btn:hover{
+  transform:scale(1.03);
+}
+
+/* TELEGRAM */
+.telegram{
+  margin:20px;
+  text-align:center;
+}
+
+.telegram a{
+  background:#0088cc;
+  padding:10px 18px;
+  border-radius:10px;
+  color:white;
+  text-decoration:none;
+  font-weight:600;
 }
 
 /* PLAYER */
 #playerPage{
   display:none;
-  height:100vh;
-  flex-direction:column;
-}
-
-.topbar{
-  position:absolute;
-  top:0;
-  left:0;
-  right:0;
-  z-index:10;
-  display:flex;
-  justify-content:space-between;
-  padding:10px;
-  background:rgba(0,0,0,0.5);
 }
 
 iframe{
-  flex:1;
   width:100%;
+  height:70vh;
   border:none;
-  height:100vh;
 }
 
-.btn{
-  background:transparent;
-  border:1px solid white;
-  color:white;
-  padding:4px 8px;
-  border-radius:6px;
-}
-
-.footer{
-  text-align:center;
-  padding:12px;
-  color:#00e676;
-  border-top:1px solid #222;
+/* TOP BAR PLAYER */
+.topbar{
+  display:flex;
+  justify-content:space-between;
+  padding:10px;
+  background:#111;
+  font-weight:600;
 }
 
 /* ERROR */
 #error{
   display:none;
-  position:fixed;
-  inset:0;
-  background:black;
-  color:white;
-  align-items:center;
-  justify-content:center;
-  flex-direction:column;
+  text-align:center;
+  padding:40px;
+  color:red;
 }
 </style>
 </head>
 
 <body>
 
-<div class="header">
-🏏 ARJUN CRICKET LIVE
-</div>
-
-<!-- HOME -->
+<!-- HOME PAGE -->
 <div id="home">
 
-  <div class="card"><a href="?id=hindi">Star Sports Hindi</a></div>
-  <div class="card"><a href="?id=jio-hotstar">Jio Hotstar</a></div>
-  <div class="card"><a href="?id=eng">Star English</a></div>
-  <div class="card"><a href="?id=sky-sports-nz">Sky 4K</a></div>
-  <div class="card"><a href="?id=willow">Willow Sports</a></div>
-  <div class="card"><a href="?id=ios">For iOS Users</a></div>
+  <div class="header">ARJUN CRICKET LIVE</div>
+  <div class="sub">Fast • Free • Live Streaming Links</div>
+
+  <div class="container">
+
+    <a class="btn" href="?id=hindi">🔥 Star Sports Hindi</a>
+    <a class="btn" href="?id=jio-hotstar">⚡ Jio Hotstar</a>
+    <a class="btn" href="?id=eng">🏏 Star English</a>
+    <a class="btn" href="?id=sky-sports-nz">🌍 Sky 4K</a>
+    <a class="btn" href="?id=willow">📺 Willow Sports</a>
+    <a class="btn" href="?id=ios">🍎 For iOS Users</a>
+
+  </div>
+
+  <div class="telegram">
+    <a href="https://t.me/ArjunCricket18" target="_blank">Join Telegram</a>
+  </div>
 
 </div>
 
-<!-- PLAYER -->
+<!-- PLAYER PAGE -->
 <div id="playerPage">
 
   <div class="topbar">
-    <div>ARJUN CRICKET</div>
-    <button class="btn" onclick="toggleFullscreen()">⛶</button>
+    <div>🏏 ARJUN CRICKET LIVE</div>
+    <a href="/" style="color:#ff1e1e;text-decoration:none;">Home</a>
   </div>
 
   <iframe id="player"></iframe>
 
-  <div class="footer">🔴 LIVE LINKS BY ARJUN CRICKET</div>
+  <div class="telegram">
+    <a href="https://t.me/ArjunCricket18" target="_blank">Join Telegram</a>
+  </div>
 
 </div>
 
 <!-- ERROR -->
 <div id="error">
-  <h1 style="color:red;">Stream Error</h1>
-  <p id="msg"></p>
-  <button onclick="location.href='/'">Home</button>
+  <h2>Stream Not Found</h2>
+  <p>Invalid or missing link</p>
+  <a href="/" style="color:white">Go Back</a>
 </div>
 
 <script>
 
 const JSON_URL = "https://allrounderid2.pages.dev/id.json";
 
-/* CHECK MODE */
 const id = new URLSearchParams(location.search).get("id");
 
+/* IF NO ID → SHOW HOME */
 if(!id){
   document.getElementById("home").style.display="block";
-  document.getElementById("playerPage").style.display="none";
-} else {
-  loadStream(id);
 }
 
-/* LOAD STREAM */
-async function loadStream(id){
+/* IF ID EXISTS → LOAD PLAYER */
+else{
+  loadStream();
+}
 
-  document.getElementById("home").style.display="none";
-  document.getElementById("playerPage").style.display="flex";
+async function loadStream(){
 
   try{
+
     const res = await fetch(JSON_URL);
     const data = await res.json();
 
     const stream = data.iframes.find(x => x.id === id);
 
     if(!stream){
-      showError("Invalid stream ID");
+      document.getElementById("home").style.display="none";
+      document.getElementById("error").style.display="block";
       return;
     }
 
+    document.getElementById("home").style.display="none";
+    document.getElementById("playerPage").style.display="block";
+
     document.getElementById("player").src = stream.iframeSrc;
 
-  } catch(e){
-    showError("Failed to load stream");
+  }catch(e){
+    document.getElementById("error").style.display="block";
   }
-}
 
-/* ERROR */
-function showError(msg){
-  document.getElementById("playerPage").style.display="none";
-  document.getElementById("home").style.display="none";
-  document.getElementById("error").style.display="flex";
-  document.getElementById("msg").innerText=msg;
-}
-
-/* FULLSCREEN */
-function toggleFullscreen(){
-  const el = document.getElementById("playerPage");
-
-  if(!document.fullscreenElement){
-    el.requestFullscreen();
-  } else {
-    document.exitFullscreen();
-  }
 }
 
 </script>
 
 </body>
 </html>
-
