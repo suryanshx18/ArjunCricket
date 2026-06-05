@@ -3,197 +3,317 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Arjun Cricket Live</title>
+<title>ARJUN CRICKET </title>
 
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;600;800&display=swap" rel="stylesheet">
 
 <style>
-body{
-  margin:0;
-  font-family:Montserrat;
-  background:#0a0a0a;
-  color:white;
+:root{
+  --red:#ff1e1e;
+  --dark:#070707;
+  --card:#111;
+  --text:#fff;
+  --muted:#aaa;
 }
 
-/* HEADER */
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Barlow',sans-serif;}
+
+body{
+  background:var(--dark);
+  color:var(--text);
+}
+
+/* LOADING */
+#loading-screen{
+  position:fixed;
+  inset:0;
+  background:var(--dark);
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  z-index:9999;
+}
+
+.load-logo{
+  font-family:'Bebas Neue';
+  font-size:48px;
+  letter-spacing:4px;
+}
+
+.load-logo span{color:var(--red);}
+
+.load-bar-wrap{
+  width:200px;height:3px;background:#222;margin-top:10px;
+}
+
+.load-bar{
+  width:40%;
+  height:100%;
+  background:var(--red);
+  animation:move 1s infinite;
+}
+
+@keyframes move{
+  0%{transform:translateX(-100%)}
+  100%{transform:translateX(300%)}
+}
+
+/* HOME */
+#home{
+  padding:20px;
+}
+
 .header{
-  font-family:"Bebas Neue";
+  font-family:'Bebas Neue';
   font-size:40px;
   text-align:center;
-  padding:15px;
-  color:#ff1e1e;
+  color:var(--red);
   letter-spacing:3px;
+  margin-bottom:10px;
 }
 
-/* SUB TEXT */
 .sub{
   text-align:center;
-  color:#aaa;
-  margin-top:-10px;
-  font-size:13px;
-}
-
-/* HOME GRID */
-.container{
-  display:grid;
-  grid-template-columns:1fr;
-  gap:12px;
-  padding:20px;
-  max-width:500px;
-  margin:auto;
+  color:var(--muted);
+  margin-bottom:20px;
 }
 
 /* BUTTONS */
+.grid{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:12px;
+}
+
 .btn{
   display:block;
-  padding:14px;
-  text-align:center;
-  background:linear-gradient(135deg,#ff1e1e,#b30000);
-  color:white;
-  font-weight:600;
+  padding:15px;
+  background:#1a1a1a;
+  border:1px solid #222;
   border-radius:12px;
+  color:white;
   text-decoration:none;
-  box-shadow:0 0 12px rgba(255,0,0,0.3);
+  font-weight:600;
   transition:0.2s;
 }
 
 .btn:hover{
-  transform:scale(1.03);
-}
-
-/* TELEGRAM */
-.telegram{
-  margin:20px;
-  text-align:center;
-}
-
-.telegram a{
-  background:#0088cc;
-  padding:10px 18px;
-  border-radius:10px;
-  color:white;
-  text-decoration:none;
-  font-weight:600;
+  background:var(--red);
+  transform:scale(1.02);
 }
 
 /* PLAYER */
-#playerPage{
+#playerWrapper{
   display:none;
+  height:100vh;
+  flex-direction:column;
 }
 
-iframe{
-  width:100%;
-  height:70vh;
-  border:none;
-}
-
-/* TOP BAR PLAYER */
 .topbar{
   display:flex;
   justify-content:space-between;
   padding:10px;
-  background:#111;
+  background:#000000aa;
+  backdrop-filter:blur(8px);
+  position:absolute;
+  width:100%;
+  z-index:10;
+}
+
+.fullbtn{
+  background:none;
+  border:1px solid white;
+  color:white;
+  padding:5px 10px;
+  border-radius:8px;
+}
+
+iframe{
+  flex:1;
+  width:100%;
+  border:none;
+}
+
+/* FOOTER */
+.footer{
+  text-align:center;
+  padding:10px;
+  color:#00ff90;
   font-weight:600;
+  border-top:1px solid #222;
 }
 
 /* ERROR */
 #error{
   display:none;
+  height:100vh;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
   text-align:center;
-  padding:40px;
-  color:red;
 }
+
+#error h1{color:red;}
+
+button{
+  margin-top:10px;
+  padding:10px 20px;
+  background:var(--red);
+  border:none;
+  color:white;
+}
+
+/* POPUP */
+.overlay{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:#000000cc;
+  align-items:center;
+  justify-content:center;
+}
+
+.popup{
+  background:#111;
+  padding:20px;
+  border-radius:15px;
+  text-align:center;
+  width:90%;
+  max-width:350px;
+}
+
+.popup h2{color:var(--red);}
+
+.popup button{
+  margin-top:10px;
+}
+
+/* HIDE */
+.hidden{display:none;}
 </style>
 </head>
 
 <body>
 
-<!-- HOME PAGE -->
-<div id="home">
-
-  <div class="header">ARJUN CRICKET LIVE</div>
-  <div class="sub">Fast • Free • Live Streaming Links</div>
-
-  <div class="container">
-
-    <a class="btn" href="?id=hindi">🔥 Star Sports Hindi</a>
-    <a class="btn" href="?id=jio-hotstar">⚡ Jio Hotstar</a>
-    <a class="btn" href="?id=eng">🏏 Star English</a>
-    <a class="btn" href="?id=sky-sports-nz">🌍 Sky 4K</a>
-    <a class="btn" href="?id=willow">📺 Willow Sports</a>
-    <a class="btn" href="?id=ios">🍎 For iOS Users</a>
-
-  </div>
-
-  <div class="telegram">
-    <a href="https://t.me/ArjunCricket18" target="_blank">Join Telegram</a>
-  </div>
-
+<!-- LOADING -->
+<div id="loading-screen">
+  <div class="load-logo">ARJUN CRICKET<span>LIVE</span></div>
+  <div class="load-bar-wrap"><div class="load-bar"></div></div>
 </div>
 
-<!-- PLAYER PAGE -->
-<div id="playerPage">
+<!-- HOME PAGE -->
+<div id="home">
+  <div class="header">ARJUN CRICKET LIVE</div>
+  <div class="sub">🔥 Click & Watch Live Matches</div>
+
+  <div class="grid">
+
+    <a class="btn" href="?id=hindi">Star Sports Hindi</a>
+    <a class="btn" href="?id=jio-hotstar">Jio Hotstar</a>
+    <a class="btn" href="?id=eng">Star English</a>
+    <a class="btn" href="?id=sky-sports-nz">Sky 4K</a>
+    <a class="btn" href="?id=willow">Willow Sports</a>
+    <a class="btn" href="?id=ios">For iOS Users</a>
+
+  </div>
+</div>
+
+<!-- PLAYER -->
+<div id="playerWrapper">
 
   <div class="topbar">
-    <div>🏏 ARJUN CRICKET LIVE</div>
-    <a href="/" style="color:#ff1e1e;text-decoration:none;">Home</a>
+    <div>ARJUN CRICKET LIVE</div>
+    <button class="fullbtn" onclick="toggleFullscreen()">⛶</button>
   </div>
 
   <iframe id="player"></iframe>
 
-  <div class="telegram">
-    <a href="https://t.me/ArjunCricket18" target="_blank">Join Telegram</a>
+  <div class="footer">
+    🔴 LIVE LINKS BY ARJUN CRICKET
   </div>
-
 </div>
 
 <!-- ERROR -->
 <div id="error">
-  <h2>Stream Not Found</h2>
-  <p>Invalid or missing link</p>
-  <a href="/" style="color:white">Go Back</a>
+  <h1>Stream Not Found</h1>
+  <p id="msg"></p>
+  <button onclick="location.href='/'">Go Home</button>
+</div>
+
+<!-- POPUP -->
+<div class="overlay" id="popup">
+  <div class="popup">
+    <h2>ARJUN CRICKET</h2>
+    <p>Join Telegram for Live Updates</p>
+    <p><b>@ArjunCricket18</b></p>
+    <button onclick="window.open('https://t.me/ArjunCricket18')">Join Now</button>
+    <button onclick="closePopup()">Later</button>
+  </div>
 </div>
 
 <script>
 
-const JSON_URL = "https://allrounderid2.pages.dev/id.json";
+const JSON_URL="https://allrounderid2.pages.dev/id.json";
 
-const id = new URLSearchParams(location.search).get("id");
+/* SHOW HOME OR PLAYER */
+window.onload=()=>{
+  setTimeout(()=>document.getElementById("loading-screen").style.display="none",1000);
 
-/* IF NO ID → SHOW HOME */
-if(!id){
-  document.getElementById("home").style.display="block";
-}
+  const id=new URLSearchParams(location.search).get("id");
 
-/* IF ID EXISTS → LOAD PLAYER */
-else{
-  loadStream();
-}
+  if(id){
+    loadStream(id);
+    document.getElementById("home").style.display="none";
+    document.getElementById("playerWrapper").style.display="flex";
+  }else{
+    showPopup();
+  }
+};
 
-async function loadStream(){
-
+/* LOAD STREAM */
+async function loadStream(id){
   try{
+    const res=await fetch(JSON_URL);
+    const data=await res.json();
 
-    const res = await fetch(JSON_URL);
-    const data = await res.json();
-
-    const stream = data.iframes.find(x => x.id === id);
+    const stream=data.iframes.find(x=>x.id===id);
 
     if(!stream){
-      document.getElementById("home").style.display="none";
-      document.getElementById("error").style.display="block";
+      showError("Invalid or missing stream ID");
       return;
     }
 
-    document.getElementById("home").style.display="none";
-    document.getElementById("playerPage").style.display="block";
-
-    document.getElementById("player").src = stream.iframeSrc;
+    document.getElementById("player").src=stream.iframeSrc;
 
   }catch(e){
-    document.getElementById("error").style.display="block";
+    showError("Failed to load stream");
   }
+}
 
+/* ERROR */
+function showError(msg){
+  document.getElementById("error").style.display="flex";
+  document.getElementById("msg").innerText=msg;
+}
+
+/* FULLSCREEN */
+function toggleFullscreen(){
+  const el=document.getElementById("playerWrapper");
+
+  if(!document.fullscreenElement){
+    el.requestFullscreen();
+  }else{
+    document.exitFullscreen();
+  }
+}
+
+/* POPUP */
+function showPopup(){
+  document.getElementById("popup").style.display="flex";
+}
+function closePopup(){
+  document.getElementById("popup").style.display="none";
 }
 
 </script>
