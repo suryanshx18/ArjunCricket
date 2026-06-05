@@ -289,6 +289,34 @@
       backdrop-filter: blur(4px);
     }
 
+    .topbar-right {
+      display: flex;
+      align-items: center;
+      gap: clamp(10px, 3vw, 16px);
+    }
+
+    .fullscreen-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      background: rgba(255, 30, 30, 0.15);
+      border: 1px solid rgba(255, 30, 30, 0.3);
+      border-radius: 6px;
+      color: var(--red);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 16px;
+      padding: 0;
+    }
+
+    .fullscreen-btn:hover {
+      background: rgba(255, 30, 30, 0.25);
+      border-color: var(--red);
+      transform: scale(1.05);
+    }
+
     .brand {
       font-family: 'Bebas Neue', sans-serif;
       font-size: clamp(16px, 4vw, 24px);
@@ -675,7 +703,10 @@
     <div class="video-wrap">
       <div class="topbar">
         <div class="brand">ARJUN<span>CRICKET</span></div>
-        <div class="live-pill"><div class="live-dot"></div>LIVE</div>
+        <div class="topbar-right">
+          <button class="fullscreen-btn" onclick="toggleFullscreen()" title="Fullscreen">⛶</button>
+          <div class="live-pill"><div class="live-dot"></div>LIVE</div>
+        </div>
       </div>
       <iframe id="main-iframe"></iframe>
       <div id="buffering-overlay">
@@ -806,6 +837,32 @@
 
     function hideBuffering() {
       document.getElementById("buffering-overlay").classList.remove("show");
+    }
+
+    function toggleFullscreen() {
+      const videoWrap = document.querySelector(".video-wrap");
+      
+      if (!document.fullscreenElement) {
+        if (videoWrap.requestFullscreen) {
+          videoWrap.requestFullscreen();
+        } else if (videoWrap.webkitRequestFullscreen) {
+          videoWrap.webkitRequestFullscreen();
+        } else if (videoWrap.mozRequestFullScreen) {
+          videoWrap.mozRequestFullScreen();
+        } else if (videoWrap.msRequestFullscreen) {
+          videoWrap.msRequestFullscreen();
+        }
+      } else {
+        if (document.exitFullscreen) {
+          document.exitFullscreen();
+        } else if (document.webkitExitFullscreen) {
+          document.webkitExitFullscreen();
+        } else if (document.mozCancelFullScreen) {
+          document.mozCancelFullScreen();
+        } else if (document.msExitFullscreen) {
+          document.msExitFullscreen();
+        }
+      }
     }
   </script>
 
