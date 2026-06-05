@@ -134,23 +134,55 @@
 
 <body>
 
-<div id="loading-screen">
-  <div class="load-logo">ARJUN<span>CRICKET</span></div>
-</div>
+async function loadStream() {
 
-<div id="error-screen">
-  <h2>Stream Offline</h2>
-  <p>Stream not available</p>
-</div>
+  const params = new URLSearchParams(window.location.search);
+  const id = params.get("id");
 
-<div class="video-wrap">
-  <div class="topbar">
-    <div class="brand">ARJUN<span>CRICKET</span></div>
-    <div class="live-pill">LIVE</div>
-  </div>
+  // ❌ NO ID in URL
+  if (!id) {
+    showError("No ID provided");
+    document.getElementById("loading-screen").style.display = "none";
+    return;
+  }
 
-  <iframe id="main-iframe"></iframe>
-</div>
+  try {
+    const res = await fetch(JSON_URL + "?t=" + Date.now());
+    const data = await res.json();
+
+    const stream = data.iframes.find(x => x.id === id);
+
+    // ❌ WRONG ID
+    if (!stream || !stream.iframeSrc) {
+      showError("Invalid or expired link");
+      document.getElementById("loading-screen").style.display = "none";
+      return;
+    }
+
+    document.title = (stream.name || "Live Stream") + " — ARJUN CRICKET";
+
+    document.getElementById("stream-name-label").innerText =
+      stream.name || "Live Stream";
+
+    const iframe = document.getElementById("main-iframe");
+
+    iframe.onload = () => {
+      document.getElementById("loading-screen").style.display = "none";
+      document.getElementById("player-container").style.display = "flex";
+      hideBuffering();
+    };
+
+    iframe.src = stream.iframeSrc;
+
+    if (stream.hit) {
+      fetch(stream.hit).catch(() => {});
+    }
+
+  } catch (e) {
+    showError("Error loading stream");
+    document.getElementById("loading-screen").style.display = "none";
+  }
+}
 
 <!-- NEW REQUIRED TEXT -->
 <div class="live-credit">
