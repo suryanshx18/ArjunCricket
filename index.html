@@ -698,60 +698,62 @@
     </div>
   </div>
 
-  <!-- PLAYER PAGE -->
+  <!-- PLAYER PAGE - STREAM ONLY -->
   <div id="player-container">
-    <div class="video-wrap">
-      <div class="topbar">
-        <div class="brand">ARJUN<span>CRICKET</span></div>
-        <div class="topbar-right">
-          <button class="fullscreen-btn" onclick="toggleFullscreen()" title="Fullscreen">⛶</button>
-          <div class="live-pill"><div class="live-dot"></div>LIVE</div>
+    <div style="position: relative; width: 100%; height: 100%; background: #000;">
+      <div class="topbar" style="position: absolute; top: 0; left: 0; right: 0; z-index: 20; background: linear-gradient(180deg, rgba(0,0,0,0.95) 0%, transparent 100%); backdrop-filter: blur(4px); display: flex; align-items: center; justify-content: space-between; padding: clamp(10px, 3vw, 16px) clamp(16px, 4vw, 28px);">
+        <div class="brand" style="font-family: 'Bebas Neue', sans-serif; font-size: clamp(16px, 4vw, 24px); letter-spacing: 4px; font-weight: 700;">ARJUN<span style="color: var(--red);">CRICKET</span></div>
+        <div style="display: flex; align-items: center; gap: clamp(10px, 3vw, 16px);">
+          <button class="share-btn" onclick="showSharePopup()" title="Share Stream" style="display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; background: rgba(0, 136, 204, 0.15); border: 1px solid rgba(0, 136, 204, 0.3); border-radius: 6px; color: #0088cc; cursor: pointer; transition: all 0.3s ease; font-size: 16px; padding: 0;">⬤</button>
+          <div class="live-pill" style="display: flex; align-items: center; gap: 6px; background: linear-gradient(135deg, var(--red), #ff4545); color: #fff; font-size: clamp(9px, 2.5vw, 11px); font-weight: 700; letter-spacing: 2px; padding: 5px 12px; border-radius: 6px; text-transform: uppercase; box-shadow: 0 4px 16px rgba(255, 30, 30, 0.3);"><div style="width: 6px; height: 6px; border-radius: 50%; background: #fff; animation: blink 1.2s infinite;"></div>LIVE</div>
         </div>
       </div>
-      <iframe id="main-iframe"></iframe>
-      <div id="buffering-overlay">
-        <div class="buf-spinner"></div>
-        <div id="buf-text">buffering stream...</div>
-      </div>
-    </div>
-
-    <div class="bottom-panel">
-      <div class="join-banner">
-        <div class="join-text-block">
-          <div class="join-eyebrow">Official Channel</div>
-          <div class="join-title">ARJUN CRICKET</div>
-          <div class="join-sub">Free Streams · Live Updates · Cricket Content</div>
-        </div>
-        <button class="tg-join-btn" onclick="showPopup(); return false;">
-          <svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L8.32 14.617l-2.96-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.828.942z"/></svg>
-          Join Telegram
-        </button>
-      </div>
-      <div class="stream-info">
-        <div class="stream-badge">HD</div>
-        <div class="stream-name" id="stream-name-label">Live Stream</div>
-      </div>
+      <iframe id="main-iframe" style="width: 100%; height: 100%; border: none; display: block; position: absolute; top: 0; left: 0;" allowfullscreen allow="encrypted-media; fullscreen; autoplay"></iframe>
+      
+      <!-- FULLSCREEN BUTTON - BOTTOM RIGHT -->
+      <button class="fullscreen-btn" onclick="toggleFullscreen()" title="Fullscreen" style="position: absolute; bottom: 20px; right: 20px; z-index: 15; display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; background: rgba(255, 30, 30, 0.9); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 8px; color: #fff; cursor: pointer; transition: all 0.3s ease; font-size: 18px; padding: 0; box-shadow: 0 4px 16px rgba(255, 30, 30, 0.4); font-weight: 700;">⛶</button>
     </div>
   </div>
 
   <!-- TELEGRAM JOIN POPUP -->
   <div class="overlay" id="overlay">
     <div class="popup">
-      <div class="popup-icon">
-        <svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L8.32 14.617l-2.96-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.828.942z"/></svg>
+      <div class="popup-icon" style="background: linear-gradient(135deg, #0088cc, #0077b6); box-shadow: 0 12px 32px rgba(0, 136, 204, 0.4);">
+        <svg viewBox="0 0 24 24"><path d="M9.993 15.674l-.398 5.604c.57 0 .817-.245 1.113-.54l2.67-2.557 5.53 4.047c1.014.558 1.734.264 1.987-.939l3.6-16.86.001-.001c.3-1.4-.506-1.95-1.496-1.58L1.27 9.64c-1.37.53-1.35 1.29-.233 1.64l5.68 1.77L19.29 5.73c.59-.39 1.13-.175.69.215" fill="#fff"/></svg>
       </div>
-      <div class="accent-line"></div>
-      <div class="popup-brand">ARJUN CRICKET</div>
+      <div class="accent-line" style="background: linear-gradient(90deg, transparent, #0088cc, transparent); box-shadow: 0 0 16px rgba(0, 136, 204, 0.3);"></div>
+      <div class="popup-brand" style="background: linear-gradient(135deg, #0088cc, #0077b6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">ARJUN CRICKET</div>
       <p>Join our official Telegram channel for instant live stream updates, match analysis, and exclusive cricket content!</p>
       <div class="popup-actions">
-        <button class="btn-cancel" onclick="closePopup()">Already Joined </button>
-        <button class="btn-join" onclick="goTelegram()">Join Now →</button>
+        <button class="btn-cancel" onclick="closePopup()" style="flex: 1;">Later</button>
+        <button class="btn-join" onclick="goTelegram()" style="flex: 2; background: linear-gradient(135deg, #0088cc, #0077b6); box-shadow: 0 6px 20px rgba(0, 136, 204, 0.4); font-size: clamp(14px, 3vw, 16px); font-weight: 900; letter-spacing: 1px;"><strong>JOIN NOW →</strong></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SHARE POPUP -->
+  <div class="overlay" id="share-overlay">
+    <div class="popup">
+      <div class="popup-icon" style="background: linear-gradient(135deg, #0088cc, #006aab);">
+        <svg viewBox="0 0 24 24" style="width: 28px; height: 28px;"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" fill="#fff"/></svg>
+      </div>
+      <div class="accent-line"></div>
+      <div class="popup-brand">Share This Stream</div>
+      <p>Copy the link below and share with friends</p>
+      <div style="background: rgba(255,255,255,0.05); border: 1px solid var(--border); border-radius: 10px; padding: 12px 14px; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; word-break: break-all;">
+        <span id="share-link" style="flex: 1; font-size: 12px; color: var(--muted); font-family: monospace;">loading...</span>
+        <button onclick="copyShareLink()" style="background: var(--red); color: #fff; border: none; padding: 6px 12px; border-radius: 6px; font-size: 11px; font-weight: 700; cursor: pointer; flex-shrink: 0; transition: all 0.2s;">COPY</button>
+      </div>
+      <div class="popup-actions">
+        <button class="btn-cancel" onclick="closeSharePopup()" style="flex: 1;">Close</button>
+        <button class="btn-join" onclick="shareToTelegram()" style="flex: 2;">Share on Telegram</button>
       </div>
     </div>
   </div>
 
   <script>
     const JSON_URL = "https://allrounderid2.pages.dev/id.json";
+    let currentStreamId = null;
 
     window.onload = () => {
       setTimeout(() => {
@@ -763,14 +765,15 @@
     function checkStream() {
       const params = new URLSearchParams(window.location.search);
       const id = params.get("id");
+      currentStreamId = id;
 
       if (id) {
-        // Hide home, show player
+        // Load stream
         document.getElementById("home").classList.remove("show");
-        document.getElementById("player-container").classList.remove("show");
+        document.getElementById("player-container").classList.add("show");
         loadStream(id);
       } else {
-        // Show home, hide player
+        // Show home
         document.getElementById("home").classList.add("show");
         document.getElementById("player-container").classList.remove("show");
         setTimeout(showPopup, 600);
@@ -785,34 +788,19 @@
         const stream = data.iframes.find(x => x.id === id);
 
         if (!stream || !stream.iframeSrc) {
-          showError("Stream not found. Please try another option.");
+          showError("Stream not found");
           return;
         }
 
-        document.title = (stream.name || "Live Stream") + " — Arjun Cricket";
-        document.getElementById("stream-name-label").innerText = stream.name || "Live Stream";
-
         const iframe = document.getElementById("main-iframe");
-        
-        iframe.onload = () => {
-          document.getElementById("loading-screen").style.display = "none";
-          document.getElementById("player-container").classList.add("show");
-          hideBuffering();
-        };
-
-        iframe.onerror = () => {
-          showError("Failed to load stream. Try refreshing.");
-        };
-
         iframe.src = stream.iframeSrc;
 
-        // Track stream hit
         if (stream.hit) {
           fetch(stream.hit).catch(() => {});
         }
 
       } catch (e) {
-        showError("Error loading stream. Please try again.");
+        showError("Error loading stream");
       }
     }
 
@@ -829,28 +817,54 @@
       closePopup();
     }
 
+    function showSharePopup() {
+      const shareLink = window.location.href;
+      document.getElementById("share-link").innerText = shareLink;
+      document.getElementById("share-overlay").classList.add("show");
+    }
+
+    function closeSharePopup() {
+      document.getElementById("share-overlay").classList.remove("show");
+    }
+
+    function copyShareLink() {
+      const shareLink = document.getElementById("share-link").innerText;
+      navigator.clipboard.writeText(shareLink).then(() => {
+        const btn = event.target;
+        const original = btn.innerText;
+        btn.innerText = "COPIED!";
+        btn.style.background = "var(--accent)";
+        setTimeout(() => {
+          btn.innerText = original;
+          btn.style.background = "var(--red)";
+        }, 2000);
+      });
+    }
+
+    function shareToTelegram() {
+      const shareLink = document.getElementById("share-link").innerText;
+      const text = encodeURIComponent("Watch Live Cricket on Arjun Cricket! " + shareLink);
+      window.open("https://t.me/share/url?url=" + encodeURIComponent(shareLink) + "&text=" + text, "_blank");
+    }
+
     function showError(msg) {
       document.getElementById("loading-screen").style.display = "none";
       document.getElementById("error-screen").style.display = "flex";
       document.getElementById("error-msg").innerText = msg;
     }
 
-    function hideBuffering() {
-      document.getElementById("buffering-overlay").classList.remove("show");
-    }
-
     function toggleFullscreen() {
-      const videoWrap = document.querySelector(".video-wrap");
+      const playerContainer = document.getElementById("player-container");
       
       if (!document.fullscreenElement) {
-        if (videoWrap.requestFullscreen) {
-          videoWrap.requestFullscreen();
-        } else if (videoWrap.webkitRequestFullscreen) {
-          videoWrap.webkitRequestFullscreen();
-        } else if (videoWrap.mozRequestFullScreen) {
-          videoWrap.mozRequestFullScreen();
-        } else if (videoWrap.msRequestFullscreen) {
-          videoWrap.msRequestFullscreen();
+        if (playerContainer.requestFullscreen) {
+          playerContainer.requestFullscreen();
+        } else if (playerContainer.webkitRequestFullscreen) {
+          playerContainer.webkitRequestFullscreen();
+        } else if (playerContainer.mozRequestFullScreen) {
+          playerContainer.mozRequestFullScreen();
+        } else if (playerContainer.msRequestFullscreen) {
+          playerContainer.msRequestFullscreen();
         }
       } else {
         if (document.exitFullscreen) {
