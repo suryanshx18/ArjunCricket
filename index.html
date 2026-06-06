@@ -19,6 +19,9 @@
   <meta property="og:title" content="Arjun Cricket Live - Stream Live Cricket Matches Free">
   <meta property="og:description" content="Watch cricket live in HD. Multiple streams available. Star Sports, Hotstar, Sky Sports & more. Join our Telegram for live updates!">
   <meta property="og:site_name" content="Arjun Cricket Live">
+  <meta property="og:image" content="https://arjuncricket.pages.dev/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
   <meta property="og:locale" content="en_IN">
   
   <!-- TWITTER CARD TAGS -->
@@ -36,7 +39,8 @@
   
   <!-- STRUCTURED DATA (Schema.org) -->
   <script type="application/ld+json">
-  { "@context": "https://schema.org",
+  {
+    "@context": "https://schema.org",
     "@type": "WebSite",
     "name": "Arjun Cricket Live",
     "url": "https://arjuncricket.pages.dev",
@@ -59,7 +63,7 @@
     "@type": "BroadcastEvent",
     "name": "Live Cricket Match",
     "description": "Watch live cricket streaming in HD quality",
-    "url": "https://arjuncricket.pages.dev",
+    "url": "hhttps://arjuncricket.pages.dev",
     "isLiveBroadcast": true,
     "broadcastDisplayName": "Arjun Cricket Live"
   }
@@ -774,22 +778,22 @@
         <div class="btn-content">🌍 Sky 4K</div>
       </a>
       <a class="stream-btn" href="?id=willow">
-        <div class="btn-content">🏏 Willow </div>
+        <div class="btn-content">🏏 Willow Sports</div>
       </a>
       <a class="stream-btn" href="?id=kayo">
-        <div class="btn-content">🏏 Willow 2 </div>
+        <div class="btn-content">🎬 Willow 2</div>
       </a>
     </div>
   </div>
 
   <!-- PLAYER PAGE - STREAM ONLY -->
   <div id="player-container">
-    <div style="position: relative; width: 100%; height: 100%; background: #000; display: flex; flex-direction: column;">
+    <div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; display: flex; flex-direction: column; z-index: 5;">
       <div class="topbar" style="position: absolute; top: 0; left: 0; right: 0; z-index: 20; background: linear-gradient(180deg, rgba(0,0,0,0.95) 0%, transparent 100%); backdrop-filter: blur(4px); display: flex; align-items: center; justify-content: space-between; padding: clamp(10px, 3vw, 16px) clamp(16px, 4vw, 28px);">
         <div class="brand" style="font-family: 'Bebas Neue', sans-serif; font-size: clamp(16px, 4vw, 24px); letter-spacing: 4px; font-weight: 700;">ARJUN<span style="color: var(--red);">CRICKET</span></div>
         <div class="live-pill" style="display: flex; align-items: center; gap: 6px; background: linear-gradient(135deg, var(--red), #ff4545); color: #fff; font-size: clamp(9px, 2.5vw, 11px); font-weight: 700; letter-spacing: 2px; padding: 5px 12px; border-radius: 6px; text-transform: uppercase; box-shadow: 0 4px 16px rgba(255, 30, 30, 0.3);"><div style="width: 6px; height: 6px; border-radius: 50%; background: #fff; animation: blink 1.2s infinite;"></div>LIVE</div>
       </div>
-      <iframe id="main-iframe" style="flex: 1; width: 100%; border: none; display: block;" allowfullscreen allow="encrypted-media; fullscreen; autoplay"></iframe>
+      <iframe id="main-iframe" style="flex: 1; width: 100vw; height: 100vh; border: none; display: block; margin: 0; padding: 0;" allowfullscreen allow="encrypted-media; fullscreen; autoplay"></iframe>
       
       <!-- PLAYER FOOTER -->
       <div style="background: linear-gradient(180deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.98) 100%); border-top: 1px solid rgba(255,255,255,0.08); padding: clamp(16px, 4vw, 24px) clamp(16px, 4vw, 28px); display: flex; align-items: center; justify-content: space-between; gap: clamp(12px, 4vw, 24px); flex-wrap: wrap; z-index: 10;">
