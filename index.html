@@ -19,7 +19,7 @@
   <meta property="og:title" content="Arjun Cricket Live - Stream Live Cricket Matches Free">
   <meta property="og:description" content="Watch cricket live in HD. Multiple streams available. Star Sports, Hotstar, Sky Sports & more. Join our Telegram for live updates!">
   <meta property="og:site_name" content="Arjun Cricket Live">
-  <meta property="og:image" content="https://arjuncricket.pages.dev/og-image.jpg">
+  <meta property="og:image" content=" https://arjuncricket.pages.dev/og-image.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:locale" content="en_IN">
@@ -31,7 +31,7 @@
   <meta name="twitter:creator" content="@ArjunCricket18">
   
   <!-- CANONICAL URL -->
-  <link rel="canonical" href="https://arjuncricket.pages.dev">
+  <link rel="canonical" href=" https://arjuncricket.pages.dev">
   
   <!-- FAVICON -->
   <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect fill='%23ff1e1e' width='32' height='32'/><text x='50%' y='50%' font-size='20' font-weight='bold' fill='white' text-anchor='middle' dy='.3em'>AC</text></svg>">
@@ -43,13 +43,13 @@
     "@context": "https://schema.org",
     "@type": "WebSite",
     "name": "Arjun Cricket Live",
-    "url": "https://arjuncricket.pages.dev",
+    "url":  https://arjuncricket.pages.dev",
     "description": "Free live cricket streaming platform with multiple HD streams",
     "potentialAction": {
       "@type": "SearchAction",
       "target": {
         "@type": "EntryPoint",
-        "urlTemplate": "https://arjuncricket.pages.dev?id={search_term_string}"
+        "urlTemplate": " https://arjuncricket.pages.dev?id={search_term_string}"
       },
       "query-input": "required name=search_term_string"
     }
@@ -63,7 +63,7 @@
     "@type": "BroadcastEvent",
     "name": "Live Cricket Match",
     "description": "Watch live cricket streaming in HD quality",
-    "url": "hhttps://arjuncricket.pages.dev",
+    "url": "https://arjuncricket.pages.dev",
     "isLiveBroadcast": true,
     "broadcastDisplayName": "Arjun Cricket Live"
   }
@@ -75,7 +75,7 @@
     "@context": "https://schema.org",
     "@type": "Organization",
     "name": "Arjun Cricket",
-    "url": "https://arjuncricket.pages.dev",
+    "url": " https://arjuncricket.pages.dev",
     "contactPoint": {
       "@type": "ContactPoint",
       "contactType": "Customer Support",
@@ -793,7 +793,12 @@
         <div class="brand" style="font-family: 'Bebas Neue', sans-serif; font-size: clamp(16px, 4vw, 24px); letter-spacing: 4px; font-weight: 700;">ARJUN<span style="color: var(--red);">CRICKET</span></div>
         <div class="live-pill" style="display: flex; align-items: center; gap: 6px; background: linear-gradient(135deg, var(--red), #ff4545); color: #fff; font-size: clamp(9px, 2.5vw, 11px); font-weight: 700; letter-spacing: 2px; padding: 5px 12px; border-radius: 6px; text-transform: uppercase; box-shadow: 0 4px 16px rgba(255, 30, 30, 0.3);"><div style="width: 6px; height: 6px; border-radius: 50%; background: #fff; animation: blink 1.2s infinite;"></div>LIVE</div>
       </div>
-      <iframe id="main-iframe" style="flex: 1; width: 100vw; height: 100vh; border: none; display: block; margin: 0; padding: 0;" allowfullscreen allow="encrypted-media; fullscreen; autoplay"></iframe>
+      
+      <!-- IFRAME -->
+      <iframe id="main-iframe" style="flex: 1; width: 100vw; height: 100vh; border: none; display: block; margin: 0; padding: 0; position: absolute; top: 0; left: 0;" allowfullscreen allow="encrypted-media; fullscreen; autoplay" sandbox="allow-same-origin allow-scripts allow-forms allow-popups allow-presentation"></iframe>
+      
+      <!-- CLICK BLOCKER OVERLAY - Prevents redirects -->
+      <div id="click-blocker" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 10; background: transparent;" onmousedown="return blockNavigation(event)" onclick="return blockNavigation(event)" ondblclick="return blockNavigation(event)"></div>
       
       <!-- PLAYER FOOTER -->
       <div style="background: linear-gradient(180deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.98) 100%); border-top: 1px solid rgba(255,255,255,0.08); padding: clamp(16px, 4vw, 24px) clamp(16px, 4vw, 28px); display: flex; align-items: center; justify-content: space-between; gap: clamp(12px, 4vw, 24px); flex-wrap: wrap; z-index: 10;">
@@ -862,6 +867,44 @@
     const JSON_URL = "https://allrounderid2.pages.dev/id.json";
     let currentStreamId = null;
 
+    // PREVENT IFRAME REDIRECTS
+    function blockNavigation(event) {
+      event.preventDefault();
+      event.stopPropagation();
+      return false;
+    }
+
+    // Block all navigation attempts from iframe
+    window.addEventListener('beforeunload', function(e) {
+      const currentPath = window.location.pathname + window.location.search;
+      const newPath = e.target.location?.pathname + e.target.location?.search;
+      
+      // Allow if staying on same page
+      if (currentPath !== newPath) {
+        // Only block if trying to leave the player page
+        if (window.location.search.includes('?id=')) {
+          return false;
+        }
+      }
+    });
+
+    // Disable right-click on player
+    document.addEventListener('contextmenu', function(e) {
+      if (e.target.tagName === 'IFRAME' || e.target.closest('#player-container')) {
+        e.preventDefault();
+        return false;
+      }
+    }, true);
+
+    // Block link clicks inside iframe area
+    document.addEventListener('click', function(e) {
+      if (e.target.closest('#click-blocker')) {
+        e.preventDefault();
+        e.stopPropagation();
+        return false;
+      }
+    }, true);
+
     window.onload = () => {
       setTimeout(() => {
         document.getElementById("loading-screen").style.display = "none";
@@ -871,14 +914,23 @@
         setTimeout(showPopup, 800);
       }, 1200);
 
-      // Prevent iframe redirects
-      preventIframeRedirects();
+      // Prevent iframe from breaking out
+      const iframe = document.getElementById("main-iframe");
+      iframe.addEventListener("load", function() {
+        try {
+          // Try to prevent navigation inside iframe
+          iframe.style.pointerEvents = "none";
+          setTimeout(() => {
+            iframe.style.pointerEvents = "auto";
+          }, 100);
+        } catch(e) {}
+      });
     };
 
     function preventIframeRedirects() {
       const iframe = document.getElementById("main-iframe");
       
-      // Stop external redirects
+      // Prevent external redirects
       iframe.addEventListener("load", function() {
         try {
           // Prevent iframe from breaking out of container
